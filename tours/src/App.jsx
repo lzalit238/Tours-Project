@@ -5,21 +5,24 @@ import './styles/main.css'
 const url = "https://course-api.com/react-tours-project";
 
 const App = () => {
-    const [places, setPlaces] = useState(url)
+    // const [places, setPlaces] = useState(url)
 
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [destination, setDestination] = useState([])
-    const removePlace = () => {
-        setPlaces(places.filter((place) => places.id !== id))
+    const removePlace = (id) => {
+        // const {id} =places
+        const newPlaces = destination.filter((places) => places.id !== id)
+
+        setDestination(newPlaces)
     }
-    const getTourSports = async () => {
+    const getTourSpots = async () => {
         const response = await fetch(url);
         const spots = await response.json();
         setDestination(spots);
     }
     useEffect(() => {
-        getTourSports()
+        getTourSpots()
                 .then(setIsLoading(false))
             .catch((error) => console.log(error))
     },[])
@@ -41,12 +44,11 @@ const App = () => {
     return (
         <div>
             <h1 className='heading'>Our Tours</h1>
-
             {destination.map((spots) => {
                 // console.log(spots)
                 return(
                     <>
-                        <Location data={spots} remove={removePlace} />
+                        <Location data={spots} remove={removePlace}/>
                     </>
                 )
             })
