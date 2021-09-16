@@ -5,8 +5,6 @@ import './styles/main.css'
 const url = "https://course-api.com/react-tours-project";
 
 const App = () => {
-    // const [places, setPlaces] = useState(url)
-
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [destination, setDestination] = useState([])
@@ -53,6 +51,7 @@ const App = () => {
                 )
             })
             }
+            {/* <button className='heading' onClick={() => {setDestination(destination)}}>Reset Tours List</button> */}
         </div>
     )
 }
